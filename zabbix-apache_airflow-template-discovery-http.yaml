@@ -1,0 +1,417 @@
+zabbix_export:
+  version: '6.2'
+  date: '2024-01-12T14:15:58Z'
+  template_groups:
+    -
+      uuid: a571c0d144b14fd4a87a9d9b2aa9fcd6
+      name: Templates/Applications
+  templates:
+    -
+      uuid: f5989ba8c32b4b46942c305be6ac1b31
+      template: 'AirFlow by HTTP'
+      name: 'AirFlow by HTTP'
+      groups:
+        -
+          name: Templates/Applications
+      discovery_rules:
+        -
+          uuid: e9983cd1ff1649af8bf6f2a814abfc55
+          name: 'GET List DAGs IDs'
+          type: HTTP_AGENT
+          key: aiflow_get_list_DAGs_DAGIDs
+          delay: '0;10m/1-7,01:00-01:30'
+          item_prototypes:
+            -
+              uuid: 0b22de0f0ecd46cd958b830ec87c7b8b
+              name: '[{{#DAG_ID}.regsub("\[\"(.*)\"\]", \1)}] Last dagRun'
+              type: DEPENDENT
+              key: 'aiflow-DAG-dagRuns-[{#DAG_ID}-lastdagRun-state]'
+              delay: '0'
+              trends: '0'
+              value_type: TEXT
+              description: 'Coleta a última dagRun da DAG [{{#DAG_ID}.regsub("\[\"(.*)\"\]", \1)}]'
+              preprocessing:
+                -
+                  type: JSONPATH
+                  parameters:
+                    - '$.dag_runs[0]'
+                  error_handler: CUSTOM_VALUE
+                  error_handler_params: 'no entries'
+              master_item:
+                key: 'aiflow-DAG-dagRuns-[{#DAG_ID}]'
+              tags:
+                -
+                  tag: airflow
+                  value: 'Last dagRun'
+                -
+                  tag: DAG
+                  value: '{{#DAG_ID}.regsub("\[\"([a-z].*)\"\]", \1)}'
+              trigger_prototypes:
+                -
+                  uuid: 2d4c54d77d5e4b049e1e98cea87244f9
+                  expression: 'last(/AirFlow by HTTP/aiflow-DAG-dagRuns-[{#DAG_ID}-lastdagRun-state])=00'
+                  name: '[{{#DAG_ID}.regsub("\[\"(.*)\"\]", \1)}] Last dagRun fail'
+                  opdata: '{ITEM.LASTVALUE}'
+                  priority: WARNING
+                  description: |
+                    Indica que a última execução da DAG [{{#DAG_ID}.regsub("\[\"(.*)\"\]", \1)}] houve falha.
+                    
+                    URL Airflow:
+                    https://572fe053962e4854a3374571a338a08d-dot-southamerica-east1.composer.googleusercontent.com/tree?dag_id={{#DAG_ID}.regsub("\[\"(.*)\"\]", \1)}
+                  tags:
+                    -
+                      tag: airflow
+                      value: 'Last dagRun fail'
+                    -
+                      tag: DAG
+                      value: '{{#DAG_ID}.regsub("\[\"([a-z].*)\"\]", \1)}'
+            -
+              uuid: f77981ddce32418396ddcd221cc1d6e2
+              name: '[{{#DAG_ID}.regsub("\[\"(.*)\"\]", \1)}] Last dagRun state number'
+              type: DEPENDENT
+              key: 'aiflow-DAG-dagRuns-[{#DAG_ID}-number-lastdagRun-state]'
+              delay: '0'
+              description: |
+                Coleta o state da última dagRun da DAG [{{#DAG_ID}.regsub("\[\"(.*)\"\]", \1)}] e transforma em numérico:
+                
+                0 Failed
+                1 Deferred
+                2 Queued
+                3 Removed
+                4 Restarting
+                5 Running
+                6 Scheduled
+                7 Sensing
+                8 Shutdown
+                9 Skipped
+                10 Up for reschedule
+                11 Up for retry
+                12 Upstream failed
+                13 Success
+              preprocessing:
+                -
+                  type: JSONPATH
+                  parameters:
+                    - '$.dag_runs[0].state'
+                  error_handler: CUSTOM_VALUE
+                  error_handler_params: 'no entries'
+                -
+                  type: TRIM
+                  parameters:
+                    - '["]'
+                -
+                  type: STR_REPLACE
+                  parameters:
+                    - failed
+                    - '00'
+                -
+                  type: STR_REPLACE
+                  parameters:
+                    - deferred
+                    - '01'
+                -
+                  type: STR_REPLACE
+                  parameters:
+                    - queued
+                    - '02'
+                -
+                  type: STR_REPLACE
+                  parameters:
+                    - removed
+                    - '03'
+                -
+                  type: STR_REPLACE
+                  parameters:
+                    - restarting
+                    - '04'
+                -
+                  type: STR_REPLACE
+                  parameters:
+                    - running
+                    - '05'
+                -
+                  type: STR_REPLACE
+                  parameters:
+                    - scheduled
+                    - '06'
+                -
+                  type: STR_REPLACE
+                  parameters:
+                    - sensing
+                    - '07'
+                -
+                  type: STR_REPLACE
+                  parameters:
+                    - shutdown
+                    - '08'
+                -
+                  type: STR_REPLACE
+                  parameters:
+                    - skipped
+                    - '09'
+                -
+                  type: STR_REPLACE
+                  parameters:
+                    - 'up for reschedule'
+                    - '10'
+                -
+                  type: STR_REPLACE
+                  parameters:
+                    - 'up for retry'
+                    - '11'
+                -
+                  type: STR_REPLACE
+                  parameters:
+                    - 'upstream failed'
+                    - '12'
+                -
+                  type: STR_REPLACE
+                  parameters:
+                    - success
+                    - '13'
+                -
+                  type: STR_REPLACE
+                  parameters:
+                    - 'no entries'
+                    - '14'
+              master_item:
+                key: 'aiflow-DAG-dagRuns-[{#DAG_ID}]'
+              tags:
+                -
+                  tag: airflow
+                  value: 'Last dagRun state number'
+                -
+                  tag: DAG
+                  value: '{{#DAG_ID}.regsub("\[\"([a-z].*)\"\]", \1)}'
+            -
+              uuid: cfc15b7134ef46d9a80cfb11f804fb1b
+              name: '[{{#DAG_ID}.regsub("\[\"(.*)\"\]", \1)}] [slamiss] dagRuns Task Instances'
+              type: DEPENDENT
+              key: 'aiflow-DAG-dagRuns-[{#DAG_ID}-TasksInstances-slamiss]'
+              delay: '0'
+              trends: '0'
+              value_type: TEXT
+              description: 'Coleta informações de SLAMISS da DAG [{{#DAG_ID}.regsub("\[\"(.*)\"\]", \1)}]'
+              preprocessing:
+                -
+                  type: JSONPATH
+                  parameters:
+                    - $..sla_miss
+                  error_handler: CUSTOM_VALUE
+                  error_handler_params: ok
+                -
+                  type: STR_REPLACE
+                  parameters:
+                    - 'null,'
+                    - ''
+                -
+                  type: STR_REPLACE
+                  parameters:
+                    - ',null'
+                    - ''
+                -
+                  type: STR_REPLACE
+                  parameters:
+                    - '"description": '
+                    - ''
+                -
+                  type: JSONPATH
+                  parameters:
+                    - $..task_id
+                  error_handler: CUSTOM_VALUE
+                  error_handler_params: ok
+              master_item:
+                key: 'aiflow-DAG-dagRuns-[{#DAG_ID}-TasksInstances]'
+              tags:
+                -
+                  tag: airflow
+                  value: '[slamiss] dagRuns Task Instances'
+                -
+                  tag: DAG
+                  value: '{{#DAG_ID}.regsub("\[\"([a-z].*)\"\]", \1)}'
+              trigger_prototypes:
+                -
+                  uuid: c761ecf647e34c56af1cc2536950383c
+                  expression: 'last(/AirFlow by HTTP/aiflow-DAG-dagRuns-[{#DAG_ID}-TasksInstances-slamiss])<>"ok"'
+                  name: '[{{#DAG_ID}.regsub("\[\"(.*)\"\]", \1)}] dagRuns Last Task Instances slamiss'
+                  opdata: '{ITEM.LASTVALUE}'
+                  priority: WARNING
+                  description: |
+                    Indica que a última Task Instance da DAG [{{#DAG_ID}.regsub("\[\"(.*)\"\]", \1)}] houve SLA MISS.
+                    
+                    URL Airflow:
+                    https://572fe053962e4854a3374571a338a08d-dot-southamerica-east1.composer.googleusercontent.com/tree?dag_id={{#DAG_ID}.regsub("\[\"(.*)\"\]", \1)}
+                  tags:
+                    -
+                      tag: airflow
+                      value: 'dagRuns Last Task Instances slamiss'
+                    -
+                      tag: DAG
+                      value: '{{#DAG_ID}.regsub("\[\"([a-z].*)\"\]", \1)}'
+            -
+              uuid: a9d6ebad7ffa4437b6b34c07463eb481
+              name: '[{{#DAG_ID}.regsub("\[\"(.*)\"\]", \1)}] dagRuns Task Instances'
+              type: HTTP_AGENT
+              key: 'aiflow-DAG-dagRuns-[{#DAG_ID}-TasksInstances]'
+              delay: 30m
+              trends: '0'
+              value_type: TEXT
+              description: 'Coleta as as Tasks Instances da DAG [{{#DAG_ID}.regsub("\[\"(.*)\"\]", \1)}]'
+              preprocessing:
+                -
+                  type: JSONPATH
+                  parameters:
+                    - $.task_instances
+                  error_handler: CUSTOM_VALUE
+                  error_handler_params: 'no entries'
+                -
+                  type: STR_REPLACE
+                  parameters:
+                    - '[]'
+                    - 'no entries'
+              timeout: 5s
+              url: '{$URL_DAGS_LIST}/{{#DAG_ID}.regsub("\[\"(.*)\"\]", \1)}/dagRuns/~/taskInstances'
+              query_fields:
+                -
+                  name: limit
+                  value: '100'
+                -
+                  name: execution_date_gte
+                  value: '{$DATEBUCKET}'
+              headers:
+                -
+                  name: Authorization
+                  value: 'Bearer {$TOKEN}'
+              tags:
+                -
+                  tag: airflow
+                  value: 'dagRuns Task Instances'
+                -
+                  tag: DAG
+                  value: '{{#DAG_ID}.regsub("\[\"([a-z].*)\"\]", \1)}'
+            -
+              uuid: 1d5995e0844a4e4692bcd54f8c97c0ad
+              name: '[{{#DAG_ID}.regsub("\[\"(.*)\"\]", \1)}] dagRuns'
+              type: HTTP_AGENT
+              key: 'aiflow-DAG-dagRuns-[{#DAG_ID}]'
+              delay: 30m
+              trends: '0'
+              value_type: TEXT
+              description: |
+                Coleta informações das dagRuns da DAG [{{#DAG_ID}.regsub("\[\"(.*)\"\]", \1)}]
+                
+                https://572fe053962e4854a3374571a338a08d-dot-southamerica-east1.composer.googleusercontent.com/tree?dag_id={{#DAG_ID}.regsub("\[\"(.*)\"\]", \1)}
+              timeout: 5s
+              url: '{$URL_DAGS_LIST}/{{#DAG_ID}.regsub("\[\"(.*)\"\]", \1)}/dagRuns'
+              query_fields:
+                -
+                  name: order_by
+                  value: '-dag_run_id'
+                -
+                  name: limit
+                  value: '10'
+              headers:
+                -
+                  name: Authorization
+                  value: 'Bearer {$TOKEN}'
+              tags:
+                -
+                  tag: airlfow
+                  value: dagRuns
+                -
+                  tag: DAG
+                  value: '{{#DAG_ID}.regsub("\[\"([a-z].*)\"\]", \1)}'
+            -
+              uuid: abb6950be29249caaf1d90694eefe9f5
+              name: '[{{#DAG_ID}.regsub("\[\"(.*)\"\]", \1)}] Details'
+              type: HTTP_AGENT
+              key: 'aiflow-DAG-details-[{#DAG_ID}]'
+              delay: '0;10m/1-7,01:31-02:01'
+              trends: '0'
+              value_type: TEXT
+              description: 'Coleta os detalhes da DAG [{{#DAG_ID}.regsub("\[\"(.*)\"\]", \1)}]'
+              timeout: 5s
+              url: '{$URL_DAGS_LIST}/{{#DAG_ID}.regsub("\[\"(.*)\"\]", \1)}/details'
+              headers:
+                -
+                  name: Authorization
+                  value: 'Bearer {$TOKEN}'
+              tags:
+                -
+                  tag: airflow
+                  value: Details
+                -
+                  tag: DAG
+                  value: '{{#DAG_ID}.regsub("\[\"([a-z].*)\"\]", \1)}'
+            -
+              uuid: 2647ea9f76e04451a819d8ff8ff0864f
+              name: '[{{#DAG_ID}.regsub("\[\"(.*)\"\]", \1)}] All Tasks ID'
+              type: DEPENDENT
+              key: 'aiflow-DAG-tasks-[{#DAG_ID}-all-tasks_id]'
+              delay: '0'
+              trends: '0'
+              value_type: TEXT
+              description: 'Coleta todas as Tasks_id da DAG [{{#DAG_ID}.regsub("\[\"(.*)\"\]", \1)}]'
+              preprocessing:
+                -
+                  type: JSONPATH
+                  parameters:
+                    - '$.tasks[*].task_id'
+              master_item:
+                key: 'aiflow-DAG-tasks-[{#DAG_ID}]'
+              tags:
+                -
+                  tag: airflow
+                  value: 'All Tasks ID'
+                -
+                  tag: DAG
+                  value: '{{#DAG_ID}.regsub("\[\"([a-z].*)\"\]", \1)}'
+            -
+              uuid: cc15f8b5278b444a91a6a7f9676d9353
+              name: '[{{#DAG_ID}.regsub("\[\"(.*)\"\]", \1)}] Tasks'
+              type: HTTP_AGENT
+              key: 'aiflow-DAG-tasks-[{#DAG_ID}]'
+              delay: '0;10m/1-7,01:31-02:01'
+              trends: '0'
+              value_type: TEXT
+              description: 'Coleta informações das Tasks da DAG [{{#DAG_ID}.regsub("\[\"(.*)\"\]", \1)}]'
+              timeout: 5s
+              url: '{$URL_DAGS_LIST}/{{#DAG_ID}.regsub("\[\"(.*)\"\]", \1)}/tasks'
+              headers:
+                -
+                  name: Authorization
+                  value: 'Bearer {$TOKEN}'
+              tags:
+                -
+                  tag: airflow
+                  value: Tasks
+                -
+                  tag: DAG
+                  value: '{{#DAG_ID}.regsub("\[\"([a-z].*)\"\]", \1)}'
+          timeout: 5s
+          url: '{$URL_DAGS_LIST}'
+          query_fields:
+            -
+              name: limit
+              value: '200'
+            -
+              name: only_active
+              value: 'false'
+          headers:
+            -
+              name: Authorization
+              value: 'Bearer {$TOKEN}'
+          lld_macro_paths:
+            -
+              lld_macro: '{#DAG_ID}'
+              path: $..dag_id
+          preprocessing:
+            -
+              type: JSONPATH
+              parameters:
+                - $.dags
+      macros:
+        -
+          macro: '{$URL_DAGS_LIST}'
+          value: 'https://572fe053962e4854a3374571a338a08d-dot-southamerica-east1.composer.googleusercontent.com/api/v1/dags'
+          description: 'Endpoint [GET] para lista de DAGs ativos'
