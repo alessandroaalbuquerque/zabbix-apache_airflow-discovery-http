@@ -1,0 +1,3528 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_ZABBIX_- PRD",
+      "label": "Zabbix - PRD",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "alexanderzobnin-zabbix-datasource",
+      "pluginName": "Zabbix"
+    },
+    {
+      "name": "DS_CERC_2.0",
+      "label": "CERC 2.0",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "stackdriver",
+      "pluginName": "Google Cloud Monitoring"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "datasource",
+      "id": "alexanderzobnin-zabbix-datasource",
+      "name": "Zabbix",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "alexanderzobnin-zabbix-triggers-panel",
+      "name": "Zabbix Problems",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "9.4.1"
+    },
+    {
+      "type": "panel",
+      "id": "jdbranham-diagram-panel",
+      "name": "Diagram",
+      "version": "1.7.3"
+    },
+    {
+      "type": "panel",
+      "id": "logs",
+      "name": "Logs",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "mxswat-separator-panel",
+      "name": "Separator",
+      "version": "1.0.1"
+    },
+    {
+      "type": "datasource",
+      "id": "stackdriver",
+      "name": "Google Cloud Monitoring",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 8,
+      "panels": [],
+      "title": "$dags dagRuns",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "${DS_ZABBIX_- PRD}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "dark-red",
+                  "index": 15,
+                  "text": "Failed"
+                },
+                "1": {
+                  "color": "dark-yellow",
+                  "index": 16,
+                  "text": "Deferred"
+                },
+                "2": {
+                  "color": "dark-yellow",
+                  "index": 17,
+                  "text": "Queued"
+                },
+                "3": {
+                  "color": "dark-yellow",
+                  "index": 18,
+                  "text": "Removed"
+                },
+                "4": {
+                  "color": "dark-yellow",
+                  "index": 19,
+                  "text": "Restarting"
+                },
+                "5": {
+                  "color": "dark-blue",
+                  "index": 20,
+                  "text": "Running"
+                },
+                "6": {
+                  "color": "dark-blue",
+                  "index": 21,
+                  "text": "Scheduled"
+                },
+                "7": {
+                  "color": "dark-yellow",
+                  "index": 22,
+                  "text": "Sensing"
+                },
+                "8": {
+                  "color": "dark-yellow",
+                  "index": 23,
+                  "text": "Shutdown"
+                },
+                "9": {
+                  "color": "dark-blue",
+                  "index": 24,
+                  "text": "Skipped"
+                },
+                "10": {
+                  "color": "dark-yellow",
+                  "index": 10,
+                  "text": "Up for reschedule"
+                },
+                "11": {
+                  "color": "dark-yellow",
+                  "index": 11,
+                  "text": "Up for retry"
+                },
+                "12": {
+                  "color": "dark-yellow",
+                  "index": 12,
+                  "text": "Upstream failed"
+                },
+                "13": {
+                  "color": "dark-green",
+                  "index": 13,
+                  "text": "Success"
+                },
+                "14": {
+                  "color": "dark-yellow",
+                  "index": 14,
+                  "text": "No entries"
+                },
+                "00": {
+                  "color": "dark-red",
+                  "index": 0,
+                  "text": "Failed"
+                },
+                "01": {
+                  "color": "dark-yellow",
+                  "index": 1,
+                  "text": "Deferred"
+                },
+                "02": {
+                  "color": "dark-blue",
+                  "index": 2,
+                  "text": "Queued"
+                },
+                "03": {
+                  "color": "dark-yellow",
+                  "index": 3,
+                  "text": "Removed"
+                },
+                "04": {
+                  "color": "dark-yellow",
+                  "index": 4,
+                  "text": "Restarting"
+                },
+                "05": {
+                  "color": "dark-blue",
+                  "index": 5,
+                  "text": "Running"
+                },
+                "06": {
+                  "color": "dark-blue",
+                  "index": 6,
+                  "text": "Scheduled"
+                },
+                "07": {
+                  "color": "dark-yellow",
+                  "index": 7,
+                  "text": "Sensing"
+                },
+                "08": {
+                  "color": "dark-yellow",
+                  "index": 8,
+                  "text": "Shutdown"
+                },
+                "09": {
+                  "color": "dark-blue",
+                  "index": 9,
+                  "text": "Skipped"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 7,
+        "x": 0,
+        "y": 1
+      },
+      "id": 3,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.4.1",
+      "targets": [
+        {
+          "application": {
+            "filter": ""
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "${DS_ZABBIX_- PRD}"
+          },
+          "functions": [
+            {
+              "added": true,
+              "def": {
+                "category": "Alias",
+                "defaultParams": [],
+                "name": "setAlias",
+                "params": [
+                  {
+                    "name": "alias",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                "$dags"
+              ],
+              "text": "setAlias()"
+            }
+          ],
+          "group": {
+            "filter": "GCP"
+          },
+          "host": {
+            "filter": "cerc-airflow-monitor-prd"
+          },
+          "item": {
+            "filter": "/\\[$dags\\] Last dagRun state number/"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        }
+      ],
+      "title": "dagRun | Last state",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "${DS_ZABBIX_- PRD}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMin": 3,
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 1,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "dark-red",
+                  "index": 14,
+                  "text": "Failed"
+                },
+                "1": {
+                  "color": "dark-yellow",
+                  "index": 15,
+                  "text": "Deferred"
+                },
+                "2": {
+                  "color": "dark-blue",
+                  "index": 16,
+                  "text": "Queued"
+                },
+                "3": {
+                  "color": "dark-yellow",
+                  "index": 17,
+                  "text": "Removed"
+                },
+                "4": {
+                  "color": "dark-yellow",
+                  "index": 18,
+                  "text": "Restarting"
+                },
+                "5": {
+                  "color": "dark-blue",
+                  "index": 19,
+                  "text": "Running"
+                },
+                "6": {
+                  "color": "dark-yellow",
+                  "index": 20,
+                  "text": "Scheduled"
+                },
+                "7": {
+                  "color": "dark-yellow",
+                  "index": 21,
+                  "text": "Sensing"
+                },
+                "8": {
+                  "color": "dark-yellow",
+                  "index": 22,
+                  "text": "Shutdown"
+                },
+                "9": {
+                  "color": "dark-blue",
+                  "index": 23,
+                  "text": "Skipped"
+                },
+                "10": {
+                  "color": "dark-yellow",
+                  "index": 10,
+                  "text": "Up for reschedule"
+                },
+                "11": {
+                  "color": "dark-yellow",
+                  "index": 11,
+                  "text": "Up for retry"
+                },
+                "12": {
+                  "color": "dark-yellow",
+                  "index": 12,
+                  "text": "Upstream failed"
+                },
+                "13": {
+                  "color": "dark-green",
+                  "index": 13,
+                  "text": "Success"
+                },
+                "00": {
+                  "color": "dark-red",
+                  "index": 0,
+                  "text": "Failed"
+                },
+                "01": {
+                  "color": "dark-yellow",
+                  "index": 1,
+                  "text": "Deferred"
+                },
+                "02": {
+                  "color": "dark-blue",
+                  "index": 2,
+                  "text": "Queued"
+                },
+                "03": {
+                  "color": "dark-yellow",
+                  "index": 3,
+                  "text": "Removed"
+                },
+                "04": {
+                  "color": "dark-yellow",
+                  "index": 4,
+                  "text": "Restarting"
+                },
+                "05": {
+                  "color": "dark-blue",
+                  "index": 5,
+                  "text": "Running"
+                },
+                "06": {
+                  "color": "dark-yellow",
+                  "index": 6,
+                  "text": "Scheduled"
+                },
+                "07": {
+                  "color": "dark-yellow",
+                  "index": 7,
+                  "text": "Sensing"
+                },
+                "08": {
+                  "color": "dark-yellow",
+                  "index": 8,
+                  "text": "Shutdown"
+                },
+                "09": {
+                  "color": "dark-blue",
+                  "index": 9,
+                  "text": "Skipped"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "max": 13,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 16,
+        "x": 8,
+        "y": 1
+      },
+      "id": 2,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "Link Airflow",
+          "url": "https://572fe053962e4854a3374571a338a08d-dot-southamerica-east1.composer.googleusercontent.com/tree?dag_id=$dags"
+        }
+      ],
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "mean",
+            "max",
+            "last"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "application": {
+            "filter": ""
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "${DS_ZABBIX_- PRD}"
+          },
+          "functions": [
+            {
+              "added": true,
+              "def": {
+                "category": "Alias",
+                "defaultParams": [],
+                "name": "setAlias",
+                "params": [
+                  {
+                    "name": "alias",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                "$dags"
+              ],
+              "text": "setAlias()"
+            }
+          ],
+          "group": {
+            "filter": "GCP"
+          },
+          "host": {
+            "filter": "cerc-airflow-monitor-prd"
+          },
+          "item": {
+            "filter": "/\\[$dags\\] Last dagRun state number/"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        }
+      ],
+      "title": "dagRun | History",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "${DS_ZABBIX_- PRD}"
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 7,
+        "x": 0,
+        "y": 3
+      },
+      "id": 6,
+      "options": {
+        "dedupStrategy": "numbers",
+        "enableLogDetails": false,
+        "prettifyLogMessage": true,
+        "showCommonLabels": false,
+        "showLabels": false,
+        "showTime": false,
+        "sortOrder": "Descending",
+        "wrapLogMessage": false
+      },
+      "pluginVersion": "9.4.1",
+      "targets": [
+        {
+          "application": {
+            "filter": ""
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "${DS_ZABBIX_- PRD}"
+          },
+          "functions": [
+            {
+              "added": true,
+              "def": {
+                "category": "Alias",
+                "defaultParams": [],
+                "name": "setAlias",
+                "params": [
+                  {
+                    "name": "alias",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                "$dags"
+              ],
+              "text": "setAlias()"
+            }
+          ],
+          "group": {
+            "filter": "GCP"
+          },
+          "host": {
+            "filter": "cerc-airflow-monitor-prd"
+          },
+          "item": {
+            "filter": "/\\[$dags\\] Last dagRun/"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "2",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        }
+      ],
+      "title": "dagRun | JSON Last",
+      "transformations": [],
+      "type": "logs"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 12
+      },
+      "id": 10,
+      "panels": [
+        {
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "${DS_ZABBIX_- PRD}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [
+                {
+                  "options": {
+                    "false": {
+                      "color": "dark-green",
+                      "index": 0,
+                      "text": "Active"
+                    },
+                    "true": {
+                      "color": "dark-yellow",
+                      "index": 1,
+                      "text": "Paused"
+                    }
+                  },
+                  "type": "value"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "dark-green",
+                    "value": null
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 2,
+            "w": 2,
+            "x": 0,
+            "y": 13
+          },
+          "id": 14,
+          "options": {
+            "colorMode": "background",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "/^is_paused$/",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "9.4.1",
+          "targets": [
+            {
+              "application": {
+                "filter": ""
+              },
+              "countTriggersBy": "",
+              "datasource": {
+                "type": "alexanderzobnin-zabbix-datasource",
+                "uid": "${DS_ZABBIX_- PRD}"
+              },
+              "functions": [
+                {
+                  "added": true,
+                  "def": {
+                    "category": "Alias",
+                    "defaultParams": [],
+                    "name": "setAlias",
+                    "params": [
+                      {
+                        "name": "alias",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "params": [
+                    "$dags"
+                  ],
+                  "text": "setAlias()"
+                }
+              ],
+              "group": {
+                "filter": "GCP"
+              },
+              "host": {
+                "filter": "cerc-airflow-monitor-prd"
+              },
+              "item": {
+                "filter": "/\\[$dags\\] Details/"
+              },
+              "itemTag": {
+                "filter": ""
+              },
+              "macro": {
+                "filter": ""
+              },
+              "options": {
+                "count": false,
+                "disableDataAlignment": false,
+                "showDisabledItems": false,
+                "skipEmptyValues": false,
+                "useTrends": "default",
+                "useZabbixValueMapping": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": "2",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "schema": 12,
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "textFilter": "",
+              "trigger": {
+                "filter": ""
+              }
+            }
+          ],
+          "title": "DAG | Is State",
+          "transformations": [
+            {
+              "id": "extractFields",
+              "options": {
+                "format": "json",
+                "jsonPaths": [
+                  {
+                    "path": "is_paused"
+                  }
+                ],
+                "source": "Value"
+              }
+            }
+          ],
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "${DS_ZABBIX_- PRD}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "noValue": "No Schedule",
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "dark-blue",
+                    "value": null
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 2,
+            "w": 3,
+            "x": 2,
+            "y": 13
+          },
+          "id": 15,
+          "options": {
+            "colorMode": "background",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "/^schedule_interval\\.value$/",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "9.4.1",
+          "targets": [
+            {
+              "application": {
+                "filter": ""
+              },
+              "countTriggersBy": "",
+              "datasource": {
+                "type": "alexanderzobnin-zabbix-datasource",
+                "uid": "${DS_ZABBIX_- PRD}"
+              },
+              "functions": [
+                {
+                  "added": true,
+                  "def": {
+                    "category": "Alias",
+                    "defaultParams": [],
+                    "name": "setAlias",
+                    "params": [
+                      {
+                        "name": "alias",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "params": [
+                    "$dags"
+                  ],
+                  "text": "setAlias()"
+                }
+              ],
+              "group": {
+                "filter": "GCP"
+              },
+              "host": {
+                "filter": "cerc-airflow-monitor-prd"
+              },
+              "item": {
+                "filter": "/\\[$dags\\] Details/"
+              },
+              "itemTag": {
+                "filter": ""
+              },
+              "macro": {
+                "filter": ""
+              },
+              "options": {
+                "count": false,
+                "disableDataAlignment": false,
+                "showDisabledItems": false,
+                "skipEmptyValues": false,
+                "useTrends": "default",
+                "useZabbixValueMapping": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": "2",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "schema": 12,
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "textFilter": "",
+              "trigger": {
+                "filter": ""
+              }
+            }
+          ],
+          "title": "DAG | Crontab",
+          "transformations": [
+            {
+              "id": "extractFields",
+              "options": {
+                "format": "json",
+                "jsonPaths": [
+                  {
+                    "path": "schedule_interval.value"
+                  }
+                ],
+                "source": "Value"
+              }
+            }
+          ],
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "${DS_ZABBIX_- PRD}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "dark-purple",
+                    "value": null
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 2,
+            "w": 2,
+            "x": 5,
+            "y": 13
+          },
+          "id": 18,
+          "options": {
+            "colorMode": "background",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "/^owners\\[0\\]$/",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "9.4.1",
+          "targets": [
+            {
+              "application": {
+                "filter": ""
+              },
+              "countTriggersBy": "",
+              "datasource": {
+                "type": "alexanderzobnin-zabbix-datasource",
+                "uid": "${DS_ZABBIX_- PRD}"
+              },
+              "functions": [
+                {
+                  "added": true,
+                  "def": {
+                    "category": "Alias",
+                    "defaultParams": [],
+                    "name": "setAlias",
+                    "params": [
+                      {
+                        "name": "alias",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "params": [
+                    "$dags"
+                  ],
+                  "text": "setAlias()"
+                }
+              ],
+              "group": {
+                "filter": "GCP"
+              },
+              "host": {
+                "filter": "cerc-airflow-monitor-prd"
+              },
+              "item": {
+                "filter": "/\\[$dags\\] Details/"
+              },
+              "itemTag": {
+                "filter": ""
+              },
+              "macro": {
+                "filter": ""
+              },
+              "options": {
+                "count": false,
+                "disableDataAlignment": false,
+                "showDisabledItems": false,
+                "skipEmptyValues": false,
+                "useTrends": "default",
+                "useZabbixValueMapping": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": "2",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "schema": 12,
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "textFilter": "",
+              "trigger": {
+                "filter": ""
+              }
+            }
+          ],
+          "title": "DAG | Owners",
+          "transformations": [
+            {
+              "id": "extractFields",
+              "options": {
+                "format": "json",
+                "jsonPaths": [
+                  {
+                    "path": "owners[0]"
+                  }
+                ],
+                "source": "Value"
+              }
+            }
+          ],
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "${DS_ZABBIX_- PRD}"
+          },
+          "gridPos": {
+            "h": 11,
+            "w": 8,
+            "x": 8,
+            "y": 13
+          },
+          "id": 13,
+          "options": {
+            "dedupStrategy": "numbers",
+            "enableLogDetails": false,
+            "prettifyLogMessage": true,
+            "showCommonLabels": false,
+            "showLabels": false,
+            "showTime": false,
+            "sortOrder": "Descending",
+            "wrapLogMessage": false
+          },
+          "pluginVersion": "9.4.1",
+          "targets": [
+            {
+              "application": {
+                "filter": ""
+              },
+              "countTriggersBy": "",
+              "datasource": {
+                "type": "alexanderzobnin-zabbix-datasource",
+                "uid": "${DS_ZABBIX_- PRD}"
+              },
+              "functions": [
+                {
+                  "added": true,
+                  "def": {
+                    "category": "Alias",
+                    "defaultParams": [],
+                    "name": "setAlias",
+                    "params": [
+                      {
+                        "name": "alias",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "params": [
+                    "$dags"
+                  ],
+                  "text": "setAlias()"
+                }
+              ],
+              "group": {
+                "filter": "GCP"
+              },
+              "host": {
+                "filter": "cerc-airflow-monitor-prd"
+              },
+              "item": {
+                "filter": "/\\[$dags\\] dagRuns Task Instances/"
+              },
+              "itemTag": {
+                "filter": ""
+              },
+              "macro": {
+                "filter": ""
+              },
+              "options": {
+                "count": false,
+                "disableDataAlignment": false,
+                "showDisabledItems": false,
+                "skipEmptyValues": false,
+                "useTrends": "default",
+                "useZabbixValueMapping": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": "2",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "schema": 12,
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "textFilter": "",
+              "trigger": {
+                "filter": ""
+              }
+            }
+          ],
+          "title": "Tasks Instances | JSON Details",
+          "transformations": [],
+          "type": "logs"
+        },
+        {
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "${DS_ZABBIX_- PRD}"
+          },
+          "gridPos": {
+            "h": 11,
+            "w": 7,
+            "x": 17,
+            "y": 13
+          },
+          "id": 31,
+          "options": {
+            "dedupStrategy": "numbers",
+            "enableLogDetails": false,
+            "prettifyLogMessage": true,
+            "showCommonLabels": false,
+            "showLabels": false,
+            "showTime": false,
+            "sortOrder": "Descending",
+            "wrapLogMessage": false
+          },
+          "pluginVersion": "9.4.1",
+          "targets": [
+            {
+              "application": {
+                "filter": ""
+              },
+              "countTriggersBy": "",
+              "datasource": {
+                "type": "alexanderzobnin-zabbix-datasource",
+                "uid": "${DS_ZABBIX_- PRD}"
+              },
+              "functions": [
+                {
+                  "added": true,
+                  "def": {
+                    "category": "Alias",
+                    "defaultParams": [],
+                    "name": "setAlias",
+                    "params": [
+                      {
+                        "name": "alias",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "params": [
+                    "$dags"
+                  ],
+                  "text": "setAlias()"
+                }
+              ],
+              "group": {
+                "filter": "GCP"
+              },
+              "host": {
+                "filter": "cerc-airflow-monitor-prd"
+              },
+              "item": {
+                "filter": "/\\[$dags\\] Tasks/"
+              },
+              "itemTag": {
+                "filter": ""
+              },
+              "macro": {
+                "filter": ""
+              },
+              "options": {
+                "count": false,
+                "disableDataAlignment": false,
+                "showDisabledItems": false,
+                "skipEmptyValues": false,
+                "useTrends": "default",
+                "useZabbixValueMapping": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": "2",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "schema": 12,
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "textFilter": "",
+              "trigger": {
+                "filter": ""
+              }
+            }
+          ],
+          "title": "Tasks | JSON Details",
+          "transformations": [],
+          "type": "logs"
+        },
+        {
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "${DS_ZABBIX_- PRD}"
+          },
+          "gridPos": {
+            "h": 16,
+            "w": 7,
+            "x": 0,
+            "y": 15
+          },
+          "id": 12,
+          "options": {
+            "dedupStrategy": "numbers",
+            "enableLogDetails": false,
+            "prettifyLogMessage": true,
+            "showCommonLabels": false,
+            "showLabels": false,
+            "showTime": false,
+            "sortOrder": "Descending",
+            "wrapLogMessage": false
+          },
+          "pluginVersion": "9.4.1",
+          "targets": [
+            {
+              "application": {
+                "filter": ""
+              },
+              "countTriggersBy": "",
+              "datasource": {
+                "type": "alexanderzobnin-zabbix-datasource",
+                "uid": "${DS_ZABBIX_- PRD}"
+              },
+              "functions": [
+                {
+                  "added": true,
+                  "def": {
+                    "category": "Alias",
+                    "defaultParams": [],
+                    "name": "setAlias",
+                    "params": [
+                      {
+                        "name": "alias",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "params": [
+                    "$dags"
+                  ],
+                  "text": "setAlias()"
+                }
+              ],
+              "group": {
+                "filter": "GCP"
+              },
+              "host": {
+                "filter": "cerc-airflow-monitor-prd"
+              },
+              "item": {
+                "filter": "/\\[$dags\\] Details/"
+              },
+              "itemTag": {
+                "filter": ""
+              },
+              "macro": {
+                "filter": ""
+              },
+              "options": {
+                "count": false,
+                "disableDataAlignment": false,
+                "showDisabledItems": false,
+                "skipEmptyValues": false,
+                "useTrends": "default",
+                "useZabbixValueMapping": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": "2",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "schema": 12,
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "textFilter": "",
+              "trigger": {
+                "filter": ""
+              }
+            }
+          ],
+          "title": "DAG | JSON Details",
+          "transformations": [],
+          "type": "logs"
+        },
+        {
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "${DS_ZABBIX_- PRD}"
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 8,
+            "x": 8,
+            "y": 24
+          },
+          "id": 20,
+          "options": {
+            "dedupStrategy": "numbers",
+            "enableLogDetails": false,
+            "prettifyLogMessage": true,
+            "showCommonLabels": false,
+            "showLabels": false,
+            "showTime": false,
+            "sortOrder": "Descending",
+            "wrapLogMessage": false
+          },
+          "pluginVersion": "9.4.1",
+          "targets": [
+            {
+              "application": {
+                "filter": ""
+              },
+              "countTriggersBy": "",
+              "datasource": {
+                "type": "alexanderzobnin-zabbix-datasource",
+                "uid": "${DS_ZABBIX_- PRD}"
+              },
+              "functions": [
+                {
+                  "added": true,
+                  "def": {
+                    "category": "Alias",
+                    "defaultParams": [],
+                    "name": "setAlias",
+                    "params": [
+                      {
+                        "name": "alias",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "params": [
+                    "$dags"
+                  ],
+                  "text": "setAlias()"
+                }
+              ],
+              "group": {
+                "filter": "GCP"
+              },
+              "host": {
+                "filter": "cerc-airflow-monitor-prd"
+              },
+              "item": {
+                "filter": "/\\[$dags\\] \\[slamiss\\] dagRuns Task Instances/"
+              },
+              "itemTag": {
+                "filter": ""
+              },
+              "macro": {
+                "filter": ""
+              },
+              "options": {
+                "count": false,
+                "disableDataAlignment": false,
+                "showDisabledItems": false,
+                "skipEmptyValues": false,
+                "useTrends": "default",
+                "useZabbixValueMapping": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": "2",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "schema": 12,
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "textFilter": "",
+              "trigger": {
+                "filter": ""
+              }
+            }
+          ],
+          "title": "Tasks Instances SLAMISS | JSON Details",
+          "transformations": [],
+          "type": "logs"
+        },
+        {
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "${DS_ZABBIX_- PRD}"
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 7,
+            "x": 17,
+            "y": 24
+          },
+          "id": 17,
+          "options": {
+            "dedupStrategy": "numbers",
+            "enableLogDetails": false,
+            "prettifyLogMessage": true,
+            "showCommonLabels": false,
+            "showLabels": false,
+            "showTime": false,
+            "sortOrder": "Descending",
+            "wrapLogMessage": false
+          },
+          "pluginVersion": "9.4.1",
+          "targets": [
+            {
+              "application": {
+                "filter": ""
+              },
+              "countTriggersBy": "",
+              "datasource": {
+                "type": "alexanderzobnin-zabbix-datasource",
+                "uid": "${DS_ZABBIX_- PRD}"
+              },
+              "functions": [
+                {
+                  "added": true,
+                  "def": {
+                    "category": "Alias",
+                    "defaultParams": [],
+                    "name": "setAlias",
+                    "params": [
+                      {
+                        "name": "alias",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "params": [
+                    "$dags"
+                  ],
+                  "text": "setAlias()"
+                }
+              ],
+              "group": {
+                "filter": "GCP"
+              },
+              "host": {
+                "filter": "cerc-airflow-monitor-prd"
+              },
+              "item": {
+                "filter": "/\\[$dags\\] All Tasks ID/"
+              },
+              "itemTag": {
+                "filter": ""
+              },
+              "macro": {
+                "filter": ""
+              },
+              "options": {
+                "count": false,
+                "disableDataAlignment": false,
+                "showDisabledItems": false,
+                "skipEmptyValues": false,
+                "useTrends": "default",
+                "useZabbixValueMapping": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": "2",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "schema": 12,
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "textFilter": "",
+              "trigger": {
+                "filter": ""
+              }
+            }
+          ],
+          "title": "Tasks | JSON Task_id",
+          "transformations": [],
+          "type": "logs"
+        },
+        {
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "${DS_ZABBIX_- PRD}"
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 24,
+            "x": 0,
+            "y": 31
+          },
+          "id": 19,
+          "options": {
+            "dedupStrategy": "numbers",
+            "enableLogDetails": false,
+            "prettifyLogMessage": true,
+            "showCommonLabels": false,
+            "showLabels": false,
+            "showTime": false,
+            "sortOrder": "Descending",
+            "wrapLogMessage": false
+          },
+          "pluginVersion": "9.4.1",
+          "targets": [
+            {
+              "application": {
+                "filter": ""
+              },
+              "countTriggersBy": "",
+              "datasource": {
+                "type": "alexanderzobnin-zabbix-datasource",
+                "uid": "${DS_ZABBIX_- PRD}"
+              },
+              "functions": [
+                {
+                  "added": true,
+                  "def": {
+                    "category": "Alias",
+                    "defaultParams": [],
+                    "name": "setAlias",
+                    "params": [
+                      {
+                        "name": "alias",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "params": [
+                    "$dags"
+                  ],
+                  "text": "setAlias()"
+                }
+              ],
+              "group": {
+                "filter": "GCP"
+              },
+              "host": {
+                "filter": "cerc-airflow-monitor-prd"
+              },
+              "item": {
+                "filter": "/\\[$dags\\] dagSources/"
+              },
+              "itemTag": {
+                "filter": ""
+              },
+              "macro": {
+                "filter": ""
+              },
+              "options": {
+                "count": false,
+                "disableDataAlignment": false,
+                "showDisabledItems": false,
+                "skipEmptyValues": false,
+                "useTrends": "default",
+                "useZabbixValueMapping": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": "2",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "schema": 12,
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "textFilter": "",
+              "trigger": {
+                "filter": ""
+              }
+            }
+          ],
+          "title": "dagSources | JSON Details",
+          "transformations": [],
+          "type": "logs"
+        }
+      ],
+      "title": "[$dags] [Tasks] Details",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 13
+      },
+      "id": 24,
+      "panels": [
+        {
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "${DS_ZABBIX_- PRD}"
+          },
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {
+                "valueName": "last"
+              },
+              "mappings": [
+                {
+                  "options": {
+                    "0": {
+                      "color": "dark-red",
+                      "index": 0,
+                      "text": "Failed"
+                    },
+                    "1": {
+                      "color": "dark-yellow",
+                      "index": 1,
+                      "text": "Deferred"
+                    },
+                    "2": {
+                      "color": "dark-blue",
+                      "index": 2,
+                      "text": "Queued"
+                    },
+                    "3": {
+                      "color": "dark-yellow",
+                      "index": 3,
+                      "text": "Removed"
+                    },
+                    "4": {
+                      "color": "dark-yellow",
+                      "index": 4,
+                      "text": "Restarting"
+                    },
+                    "5": {
+                      "color": "dark-blue",
+                      "index": 5,
+                      "text": "Running"
+                    },
+                    "6": {
+                      "color": "dark-yellow",
+                      "index": 6,
+                      "text": "Scheduled"
+                    },
+                    "7": {
+                      "color": "dark-yellow",
+                      "index": 7,
+                      "text": "Sensing"
+                    },
+                    "8": {
+                      "color": "dark-yellow",
+                      "index": 8,
+                      "text": "Shutdown"
+                    },
+                    "9": {
+                      "color": "dark-blue",
+                      "index": 9,
+                      "text": "Skipped"
+                    },
+                    "10": {
+                      "color": "dark-yellow",
+                      "index": 10,
+                      "text": "Up for reschedule"
+                    },
+                    "11": {
+                      "color": "dark-yellow",
+                      "index": 11,
+                      "text": "Up for retry"
+                    },
+                    "12": {
+                      "color": "dark-yellow",
+                      "index": 12,
+                      "text": "Upstream failed"
+                    },
+                    "13": {
+                      "color": "dark-green",
+                      "index": 13,
+                      "text": "Success"
+                    },
+                    "14": {
+                      "color": "dark-yellow",
+                      "index": 14,
+                      "text": "no entries"
+                    }
+                  },
+                  "type": "value"
+                }
+              ],
+              "noValue": "Sem Dados",
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 23,
+            "w": 24,
+            "x": 0,
+            "y": 14
+          },
+          "id": 28,
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "AirFlow",
+              "url": "https://572fe053962e4854a3374571a338a08d-dot-southamerica-east1.composer.googleusercontent.com/dag-dependencies#"
+            }
+          ],
+          "options": {
+            "authPassword": "",
+            "authUsername": "",
+            "composites": [],
+            "content": "graph LR\n      updatedeffects[updated_effects] --> waitdagupdatedeffects(wait_dag_updated_effects)\n      waitdagupdatedeffects --> partialeffects[partial_delta_updated_effects]\n      partialeffects --> waitdeltaupdatedeffects(wait_partial_delta_updated_effects)\n      waitdeltaupdatedeffects --> deltaeffects[delta_updated_effects]\n      deltaeffects --> triggerContractEffect{trigger_update_ContractEffect}\n      triggerContractEffect --> updateContractEffectHistory[update_ContractEffectHistory]\n      deltaeffects --> triggertrigger{trigger_ap005_trigger}\n      triggertrigger --> ap005trigger[ap005_trigger]\n      ap005trigger --> triggerasset{trigger_ap005_effects_without_asset}\n      triggerasset --> ap005asset[ap005_effects_without_asset] \n      ap005trigger --> triggerwhitheffects{trigger_ap005_asset_with_effects}\n      triggerwhitheffects --> ap005witheffects[ap005_asset_with_effects]\n      ap005witheffects --> triggerwithouteffects{trigger_ap005_asset_without_effects}\n      triggerwithouteffects --> ap005withouteffects[ap005_asset_without_effects]\n      generateeffect[generate_contract_effect] --> triggerhistory{trigger_updated_history}\n      triggerhistory --> updateContractEffectHistory\n      generateeffect --> triggerinterop{trigger_interop}\n      triggerinterop --> interopsent[interop_sent]\n      ap013table[ap013_prepare_table] --> triggernew{trigger_ap013_new}\n      triggernew --> ap013new[ap013_new]\n      ap013table --> triggernormal{trigger_ap013_normal}\n      triggernormal --> ap013normal[ap013_normal]\n      ap010bvalidatetiofiles[ap010b_load_and_validate_tio_files] --> waitexecution(wait_last_execution)\n      ap010bcomparetiofiles[ap010b_compare_tio_files] --> waitfiles(wait_dag_ap010b_compare_tio_files)\n      waitfiles --> ap010bresults[ap010b_send_compare_results]\n      waitfiles --> ap010bbk[ap010_load_and_compare_bk]\n      ap010bbk --> waitbk(wait_dag_ap010b_load_and_compare_bk)\n      waitbk --> ap010bresults\n      tempcontracteffect[temp_new_contracteffect] --> triggerinterop\n      ap005trigger --> waitap005[wait_ap005]\n      dumpinterop[dump_book_keeping_interop] --> triggerdecompress{trigger_decompress}\n      triggerdecompress --> decompressflow[decompress_batch_payment_flow]\n      decompressflow --> waitflow(wait_decompress_batch_payment_flow)\n      waitflow --> ap005interop[ap005_interop]\n      waitap005 --> ap005interop      \n      ap005interop --> triggerinfo{trigger_ap005_optins_whitout_info}\n      triggerinfo --> ap005info[ap005_optins_whitout_info]\n      syncbq[sync_spanner_to_bq] --> waitdump(wait_dump)\n      waitdump --> decompressflow",
+            "legend": {
+              "asTable": true,
+              "displayMode": "table",
+              "gradient": {
+                "enabled": true,
+                "show": true
+              },
+              "hideEmpty": false,
+              "hideZero": false,
+              "placement": "bottom",
+              "show": false,
+              "sortBy": "last",
+              "sortDesc": true,
+              "stats": [
+                "mean",
+                "last",
+                "min",
+                "max",
+                "sum"
+              ]
+            },
+            "maxWidth": true,
+            "mermaidServiceUrl": "",
+            "mermaidThemeVariablesDark": {
+              "classDiagram": {},
+              "common": {
+                "fontFamily": "Roboto,Helvetica Neue,Arial,sans-serif",
+                "lineColor": "green",
+                "mainBkg": "transparent",
+                "textColor": "text"
+              },
+              "flowChart": {},
+              "sequenceDiagram": {},
+              "stateDiagram": {},
+              "userJourneyDiagram": {}
+            },
+            "mermaidThemeVariablesLight": {
+              "classDiagram": {},
+              "common": {
+                "fontFamily": "Roboto,Helvetica Neue,Arial,sans-serif",
+                "lineColor": "green",
+                "mainBkg": "transparent",
+                "textColor": "text"
+              },
+              "flowChart": {
+                "nodeBorder": "transparent"
+              },
+              "sequenceDiagram": {},
+              "stateDiagram": {},
+              "userJourneyDiagram": {}
+            },
+            "metricCharacterReplacements": [
+              {
+                "replaceWithText": "updatedeffects",
+                "replacementPattern": "/(.*)\\[(updated_effects)\\](.*)/"
+              },
+              {
+                "replaceWithText": "partialeffects",
+                "replacementPattern": "/(.*)\\[(partial_delta_updated_effects)\\](.*)/"
+              },
+              {
+                "replaceWithText": "deltaeffects",
+                "replacementPattern": "/(.*)\\[(delta_updated_effects)\\](.*)/"
+              },
+              {
+                "replaceWithText": "generateeffect",
+                "replacementPattern": "/(.*)\\[(generate_contract_effect)\\](.*)/"
+              },
+              {
+                "replaceWithText": "updateContractEffectHistory",
+                "replacementPattern": "/(.*)\\[(update_ContractEffectHistory)\\](.*)/"
+              },
+              {
+                "replaceWithText": "deltaeffects",
+                "replacementPattern": "/(.*)\\[(delta_updated_effects)\\](.*)/"
+              },
+              {
+                "replaceWithText": "interopsent",
+                "replacementPattern": "/(.*)\\[(interop_sent)\\](.*)/"
+              },
+              {
+                "replaceWithText": "ap013table",
+                "replacementPattern": "/(.*)\\[(ap013_prepare_table)\\](.*)/"
+              },
+              {
+                "replaceWithText": "ap013new",
+                "replacementPattern": "/(.*)\\[(ap013_new)\\](.*)/"
+              },
+              {
+                "replaceWithText": "ap013normal",
+                "replacementPattern": "/(.*)\\[(ap013_normal)\\](.*)/"
+              },
+              {
+                "replaceWithText": "ap010bcomparetiofiles",
+                "replacementPattern": "/(.*)\\[(ap010b_compare_tio_files)\\](.*)/"
+              },
+              {
+                "replaceWithText": "ap010bbk",
+                "replacementPattern": "/(.*)\\[(ap010b_load_and_compare_bk)\\](.*)/"
+              },
+              {
+                "replaceWithText": "ap010bresults",
+                "replacementPattern": "/(.*)\\[(ap010b_send_compare_results)\\](.*)/"
+              },
+              {
+                "replaceWithText": "tempcontracteffect",
+                "replacementPattern": "/(.*)\\[(temp_new_contracteffect)\\](.*)/"
+              },
+              {
+                "replaceWithText": "dumpinterop",
+                "replacementPattern": "/(.*)\\[(dump_book_keeping_interop)\\](.*)/"
+              },
+              {
+                "replaceWithText": "syncbq",
+                "replacementPattern": "/(.*)\\[(sync_spanner_to_bq)\\](.*)/"
+              },
+              {
+                "replaceWithText": "decompressflow",
+                "replacementPattern": "/(.*)\\[(decompress_batch_payment_flow)\\](.*)/"
+              },
+              {
+                "replaceWithText": "ap005interop",
+                "replacementPattern": "/(.*)\\[(ap005_interop)\\](.*)/"
+              },
+              {
+                "replaceWithText": "ap005info",
+                "replacementPattern": "/(.*)\\[(ap005_optins_without_info)\\](.*)/"
+              },
+              {
+                "replaceWithText": "ap005trigger",
+                "replacementPattern": "/(.*)\\[(ap005_trigger)\\](.*)/"
+              },
+              {
+                "replaceWithText": "ap005asset",
+                "replacementPattern": "/(.*)\\[(ap005_effects_without_asset)\\](.*)/"
+              },
+              {
+                "replaceWithText": "ap005witheffects",
+                "replacementPattern": "/(.*)\\[(ap005_asset_with_effects)\\](.*)/"
+              },
+              {
+                "replaceWithText": "ap005withouteffects",
+                "replacementPattern": "/(.*)\\[(ap005_asset_without_effects)\\](.*)/"
+              }
+            ],
+            "moddedSeriesVal": 0,
+            "mode": "content",
+            "nodeSize": {
+              "minHeight": 0,
+              "minWidth": 30
+            },
+            "pluginVersion": "",
+            "style": "",
+            "useBackground": true,
+            "useBasicAuth": false,
+            "valueName": "last"
+          },
+          "pluginVersion": "1.7.3",
+          "targets": [
+            {
+              "application": {
+                "filter": ""
+              },
+              "countTriggersBy": "",
+              "datasource": {
+                "type": "alexanderzobnin-zabbix-datasource",
+                "uid": "${DS_ZABBIX_- PRD}"
+              },
+              "functions": [],
+              "group": {
+                "filter": "GCP"
+              },
+              "hide": false,
+              "host": {
+                "filter": "cerc-airflow-monitor-prd"
+              },
+              "item": {
+                "filter": "[updated_effects] Last dagRun state number"
+              },
+              "itemTag": {
+                "filter": "airflow: Last dagRun state number"
+              },
+              "macro": {
+                "filter": ""
+              },
+              "options": {
+                "count": false,
+                "disableDataAlignment": false,
+                "showDisabledItems": false,
+                "skipEmptyValues": false,
+                "useTrends": "default",
+                "useZabbixValueMapping": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": "0",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "schema": 12,
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "textFilter": "",
+              "trigger": {
+                "filter": ""
+              }
+            },
+            {
+              "application": {
+                "filter": ""
+              },
+              "countTriggersBy": "",
+              "datasource": {
+                "type": "alexanderzobnin-zabbix-datasource",
+                "uid": "${DS_ZABBIX_- PRD}"
+              },
+              "functions": [],
+              "group": {
+                "filter": "GCP"
+              },
+              "hide": false,
+              "host": {
+                "filter": "cerc-airflow-monitor-prd"
+              },
+              "item": {
+                "filter": "[partial_delta_updated_effects] Last dagRun state number"
+              },
+              "itemTag": {
+                "filter": "airflow: Last dagRun state number"
+              },
+              "macro": {
+                "filter": ""
+              },
+              "options": {
+                "count": false,
+                "disableDataAlignment": false,
+                "showDisabledItems": false,
+                "skipEmptyValues": false,
+                "useTrends": "default",
+                "useZabbixValueMapping": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": "0",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "schema": 12,
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "textFilter": "",
+              "trigger": {
+                "filter": ""
+              }
+            },
+            {
+              "application": {
+                "filter": ""
+              },
+              "countTriggersBy": "",
+              "datasource": {
+                "type": "alexanderzobnin-zabbix-datasource",
+                "uid": "${DS_ZABBIX_- PRD}"
+              },
+              "functions": [],
+              "group": {
+                "filter": "GCP"
+              },
+              "hide": false,
+              "host": {
+                "filter": "cerc-airflow-monitor-prd"
+              },
+              "item": {
+                "filter": "[delta_updated_effects] Last dagRun state number"
+              },
+              "itemTag": {
+                "filter": "airflow: Last dagRun state number"
+              },
+              "macro": {
+                "filter": ""
+              },
+              "options": {
+                "count": false,
+                "disableDataAlignment": false,
+                "showDisabledItems": false,
+                "skipEmptyValues": false,
+                "useTrends": "default",
+                "useZabbixValueMapping": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": "0",
+              "refId": "C",
+              "resultFormat": "time_series",
+              "schema": 12,
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "textFilter": "",
+              "trigger": {
+                "filter": ""
+              }
+            },
+            {
+              "application": {
+                "filter": ""
+              },
+              "countTriggersBy": "",
+              "datasource": {
+                "type": "alexanderzobnin-zabbix-datasource",
+                "uid": "${DS_ZABBIX_- PRD}"
+              },
+              "functions": [],
+              "group": {
+                "filter": "GCP"
+              },
+              "hide": false,
+              "host": {
+                "filter": "cerc-airflow-monitor-prd"
+              },
+              "item": {
+                "filter": "[generate_contract_effect] Last dagRun state number"
+              },
+              "itemTag": {
+                "filter": "airflow: Last dagRun state number"
+              },
+              "macro": {
+                "filter": ""
+              },
+              "options": {
+                "count": false,
+                "disableDataAlignment": false,
+                "showDisabledItems": false,
+                "skipEmptyValues": false,
+                "useTrends": "default",
+                "useZabbixValueMapping": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": "0",
+              "refId": "D",
+              "resultFormat": "time_series",
+              "schema": 12,
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "textFilter": "",
+              "trigger": {
+                "filter": ""
+              }
+            },
+            {
+              "application": {
+                "filter": ""
+              },
+              "countTriggersBy": "",
+              "datasource": {
+                "type": "alexanderzobnin-zabbix-datasource",
+                "uid": "${DS_ZABBIX_- PRD}"
+              },
+              "functions": [],
+              "group": {
+                "filter": "GCP"
+              },
+              "hide": false,
+              "host": {
+                "filter": "cerc-airflow-monitor-prd"
+              },
+              "item": {
+                "filter": "[update_ContractEffectHistory] Last dagRun state number"
+              },
+              "itemTag": {
+                "filter": "airflow: Last dagRun state number"
+              },
+              "macro": {
+                "filter": ""
+              },
+              "options": {
+                "count": false,
+                "disableDataAlignment": false,
+                "showDisabledItems": false,
+                "skipEmptyValues": false,
+                "useTrends": "default",
+                "useZabbixValueMapping": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": "0",
+              "refId": "E",
+              "resultFormat": "time_series",
+              "schema": 12,
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "textFilter": "",
+              "trigger": {
+                "filter": ""
+              }
+            },
+            {
+              "application": {
+                "filter": ""
+              },
+              "countTriggersBy": "",
+              "datasource": {
+                "type": "alexanderzobnin-zabbix-datasource",
+                "uid": "${DS_ZABBIX_- PRD}"
+              },
+              "functions": [],
+              "group": {
+                "filter": "GCP"
+              },
+              "hide": false,
+              "host": {
+                "filter": "cerc-airflow-monitor-prd"
+              },
+              "item": {
+                "filter": "[delta_updated_effects] Last dagRun state number"
+              },
+              "itemTag": {
+                "filter": "airflow: Last dagRun state number"
+              },
+              "macro": {
+                "filter": ""
+              },
+              "options": {
+                "count": false,
+                "disableDataAlignment": false,
+                "showDisabledItems": false,
+                "skipEmptyValues": false,
+                "useTrends": "default",
+                "useZabbixValueMapping": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": "0",
+              "refId": "F",
+              "resultFormat": "time_series",
+              "schema": 12,
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "textFilter": "",
+              "trigger": {
+                "filter": ""
+              }
+            },
+            {
+              "application": {
+                "filter": ""
+              },
+              "countTriggersBy": "",
+              "datasource": {
+                "type": "alexanderzobnin-zabbix-datasource",
+                "uid": "${DS_ZABBIX_- PRD}"
+              },
+              "functions": [],
+              "group": {
+                "filter": "GCP"
+              },
+              "hide": false,
+              "host": {
+                "filter": "cerc-airflow-monitor-prd"
+              },
+              "item": {
+                "filter": "[interop_sent] Last dagRun state number"
+              },
+              "itemTag": {
+                "filter": "airflow: Last dagRun state number"
+              },
+              "macro": {
+                "filter": ""
+              },
+              "options": {
+                "count": false,
+                "disableDataAlignment": false,
+                "showDisabledItems": false,
+                "skipEmptyValues": false,
+                "useTrends": "default",
+                "useZabbixValueMapping": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": "0",
+              "refId": "G",
+              "resultFormat": "time_series",
+              "schema": 12,
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "textFilter": "",
+              "trigger": {
+                "filter": ""
+              }
+            },
+            {
+              "application": {
+                "filter": ""
+              },
+              "countTriggersBy": "",
+              "datasource": {
+                "type": "alexanderzobnin-zabbix-datasource",
+                "uid": "${DS_ZABBIX_- PRD}"
+              },
+              "functions": [],
+              "group": {
+                "filter": "GCP"
+              },
+              "hide": false,
+              "host": {
+                "filter": "cerc-airflow-monitor-prd"
+              },
+              "item": {
+                "filter": "[ap013_prepare_table] Last dagRun state number"
+              },
+              "itemTag": {
+                "filter": "airflow: Last dagRun state number"
+              },
+              "macro": {
+                "filter": ""
+              },
+              "options": {
+                "count": false,
+                "disableDataAlignment": false,
+                "showDisabledItems": false,
+                "skipEmptyValues": false,
+                "useTrends": "default",
+                "useZabbixValueMapping": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": "0",
+              "refId": "H",
+              "resultFormat": "time_series",
+              "schema": 12,
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "textFilter": "",
+              "trigger": {
+                "filter": ""
+              }
+            },
+            {
+              "application": {
+                "filter": ""
+              },
+              "countTriggersBy": "",
+              "datasource": {
+                "type": "alexanderzobnin-zabbix-datasource",
+                "uid": "${DS_ZABBIX_- PRD}"
+              },
+              "functions": [],
+              "group": {
+                "filter": "GCP"
+              },
+              "hide": false,
+              "host": {
+                "filter": "cerc-airflow-monitor-prd"
+              },
+              "item": {
+                "filter": "[ap013_new] Last dagRun state number"
+              },
+              "itemTag": {
+                "filter": "airflow: Last dagRun state number"
+              },
+              "macro": {
+                "filter": ""
+              },
+              "options": {
+                "count": false,
+                "disableDataAlignment": false,
+                "showDisabledItems": false,
+                "skipEmptyValues": false,
+                "useTrends": "default",
+                "useZabbixValueMapping": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": "0",
+              "refId": "I",
+              "resultFormat": "time_series",
+              "schema": 12,
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "textFilter": "",
+              "trigger": {
+                "filter": ""
+              }
+            },
+            {
+              "application": {
+                "filter": ""
+              },
+              "countTriggersBy": "",
+              "datasource": {
+                "type": "alexanderzobnin-zabbix-datasource",
+                "uid": "${DS_ZABBIX_- PRD}"
+              },
+              "functions": [],
+              "group": {
+                "filter": "GCP"
+              },
+              "hide": false,
+              "host": {
+                "filter": "cerc-airflow-monitor-prd"
+              },
+              "item": {
+                "filter": "[ap013_normal] Last dagRun state number"
+              },
+              "itemTag": {
+                "filter": "airflow: Last dagRun state number"
+              },
+              "macro": {
+                "filter": ""
+              },
+              "options": {
+                "count": false,
+                "disableDataAlignment": false,
+                "showDisabledItems": false,
+                "skipEmptyValues": false,
+                "useTrends": "default",
+                "useZabbixValueMapping": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": "0",
+              "refId": "J",
+              "resultFormat": "time_series",
+              "schema": 12,
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "textFilter": "",
+              "trigger": {
+                "filter": ""
+              }
+            },
+            {
+              "application": {
+                "filter": ""
+              },
+              "countTriggersBy": "",
+              "datasource": {
+                "type": "alexanderzobnin-zabbix-datasource",
+                "uid": "${DS_ZABBIX_- PRD}"
+              },
+              "functions": [],
+              "group": {
+                "filter": "GCP"
+              },
+              "hide": false,
+              "host": {
+                "filter": "cerc-airflow-monitor-prd"
+              },
+              "item": {
+                "filter": "[ap010b_compare_tio_files] Last dagRun state number"
+              },
+              "itemTag": {
+                "filter": "airflow: Last dagRun state number"
+              },
+              "macro": {
+                "filter": ""
+              },
+              "options": {
+                "count": false,
+                "disableDataAlignment": false,
+                "showDisabledItems": false,
+                "skipEmptyValues": false,
+                "useTrends": "default",
+                "useZabbixValueMapping": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": "0",
+              "refId": "K",
+              "resultFormat": "time_series",
+              "schema": 12,
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "textFilter": "",
+              "trigger": {
+                "filter": ""
+              }
+            },
+            {
+              "application": {
+                "filter": ""
+              },
+              "countTriggersBy": "",
+              "datasource": {
+                "type": "alexanderzobnin-zabbix-datasource",
+                "uid": "${DS_ZABBIX_- PRD}"
+              },
+              "functions": [],
+              "group": {
+                "filter": "GCP"
+              },
+              "hide": false,
+              "host": {
+                "filter": "cerc-airflow-monitor-prd"
+              },
+              "item": {
+                "filter": "[ap010b_load_and_compare_bk] Last dagRun state number"
+              },
+              "itemTag": {
+                "filter": "airflow: Last dagRun state number"
+              },
+              "macro": {
+                "filter": ""
+              },
+              "options": {
+                "count": false,
+                "disableDataAlignment": false,
+                "showDisabledItems": false,
+                "skipEmptyValues": false,
+                "useTrends": "default",
+                "useZabbixValueMapping": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": "0",
+              "refId": "L",
+              "resultFormat": "time_series",
+              "schema": 12,
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "textFilter": "",
+              "trigger": {
+                "filter": ""
+              }
+            },
+            {
+              "application": {
+                "filter": ""
+              },
+              "countTriggersBy": "",
+              "datasource": {
+                "type": "alexanderzobnin-zabbix-datasource",
+                "uid": "${DS_ZABBIX_- PRD}"
+              },
+              "functions": [],
+              "group": {
+                "filter": "GCP"
+              },
+              "hide": false,
+              "host": {
+                "filter": "cerc-airflow-monitor-prd"
+              },
+              "item": {
+                "filter": "[ap010b_send_compare_results] Last dagRun state number"
+              },
+              "itemTag": {
+                "filter": "airflow: Last dagRun state number"
+              },
+              "macro": {
+                "filter": ""
+              },
+              "options": {
+                "count": false,
+                "disableDataAlignment": false,
+                "showDisabledItems": false,
+                "skipEmptyValues": false,
+                "useTrends": "default",
+                "useZabbixValueMapping": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": "0",
+              "refId": "M",
+              "resultFormat": "time_series",
+              "schema": 12,
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "textFilter": "",
+              "trigger": {
+                "filter": ""
+              }
+            },
+            {
+              "application": {
+                "filter": ""
+              },
+              "countTriggersBy": "",
+              "datasource": {
+                "type": "alexanderzobnin-zabbix-datasource",
+                "uid": "${DS_ZABBIX_- PRD}"
+              },
+              "functions": [],
+              "group": {
+                "filter": "GCP"
+              },
+              "hide": false,
+              "host": {
+                "filter": "cerc-airflow-monitor-prd"
+              },
+              "item": {
+                "filter": "[temp_new_contracteffect] Last dagRun state number"
+              },
+              "itemTag": {
+                "filter": "airflow: Last dagRun state number"
+              },
+              "macro": {
+                "filter": ""
+              },
+              "options": {
+                "count": false,
+                "disableDataAlignment": false,
+                "showDisabledItems": false,
+                "skipEmptyValues": false,
+                "useTrends": "default",
+                "useZabbixValueMapping": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": "0",
+              "refId": "N",
+              "resultFormat": "time_series",
+              "schema": 12,
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "textFilter": "",
+              "trigger": {
+                "filter": ""
+              }
+            },
+            {
+              "application": {
+                "filter": ""
+              },
+              "countTriggersBy": "",
+              "datasource": {
+                "type": "alexanderzobnin-zabbix-datasource",
+                "uid": "${DS_ZABBIX_- PRD}"
+              },
+              "functions": [],
+              "group": {
+                "filter": "GCP"
+              },
+              "hide": false,
+              "host": {
+                "filter": "cerc-airflow-monitor-prd"
+              },
+              "item": {
+                "filter": "[ap005_trigger] Last dagRun state number"
+              },
+              "itemTag": {
+                "filter": "airflow: Last dagRun state number"
+              },
+              "macro": {
+                "filter": ""
+              },
+              "options": {
+                "count": false,
+                "disableDataAlignment": false,
+                "showDisabledItems": false,
+                "skipEmptyValues": false,
+                "useTrends": "default",
+                "useZabbixValueMapping": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": "0",
+              "refId": "O",
+              "resultFormat": "time_series",
+              "schema": 12,
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "textFilter": "",
+              "trigger": {
+                "filter": ""
+              }
+            },
+            {
+              "application": {
+                "filter": ""
+              },
+              "countTriggersBy": "",
+              "datasource": {
+                "type": "alexanderzobnin-zabbix-datasource",
+                "uid": "${DS_ZABBIX_- PRD}"
+              },
+              "functions": [],
+              "group": {
+                "filter": "GCP"
+              },
+              "hide": false,
+              "host": {
+                "filter": "cerc-airflow-monitor-prd"
+              },
+              "item": {
+                "filter": "[dump_book_keeping_interop] Last dagRun state number"
+              },
+              "itemTag": {
+                "filter": "airflow: Last dagRun state number"
+              },
+              "macro": {
+                "filter": ""
+              },
+              "options": {
+                "count": false,
+                "disableDataAlignment": false,
+                "showDisabledItems": false,
+                "skipEmptyValues": false,
+                "useTrends": "default",
+                "useZabbixValueMapping": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": "0",
+              "refId": "P",
+              "resultFormat": "time_series",
+              "schema": 12,
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "textFilter": "",
+              "trigger": {
+                "filter": ""
+              }
+            },
+            {
+              "application": {
+                "filter": ""
+              },
+              "countTriggersBy": "",
+              "datasource": {
+                "type": "alexanderzobnin-zabbix-datasource",
+                "uid": "${DS_ZABBIX_- PRD}"
+              },
+              "functions": [],
+              "group": {
+                "filter": "GCP"
+              },
+              "hide": false,
+              "host": {
+                "filter": "cerc-airflow-monitor-prd"
+              },
+              "item": {
+                "filter": "[sync_spanner_to_bq] Last dagRun state number"
+              },
+              "itemTag": {
+                "filter": "airflow: Last dagRun state number"
+              },
+              "macro": {
+                "filter": ""
+              },
+              "options": {
+                "count": false,
+                "disableDataAlignment": false,
+                "showDisabledItems": false,
+                "skipEmptyValues": false,
+                "useTrends": "default",
+                "useZabbixValueMapping": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": "0",
+              "refId": "Q",
+              "resultFormat": "time_series",
+              "schema": 12,
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "textFilter": "",
+              "trigger": {
+                "filter": ""
+              }
+            },
+            {
+              "application": {
+                "filter": ""
+              },
+              "countTriggersBy": "",
+              "datasource": {
+                "type": "alexanderzobnin-zabbix-datasource",
+                "uid": "${DS_ZABBIX_- PRD}"
+              },
+              "functions": [],
+              "group": {
+                "filter": "GCP"
+              },
+              "hide": false,
+              "host": {
+                "filter": "cerc-airflow-monitor-prd"
+              },
+              "item": {
+                "filter": "[decompress_batch_payment_flow] Last dagRun state number"
+              },
+              "itemTag": {
+                "filter": "airflow: Last dagRun state number"
+              },
+              "macro": {
+                "filter": ""
+              },
+              "options": {
+                "count": false,
+                "disableDataAlignment": false,
+                "showDisabledItems": false,
+                "skipEmptyValues": false,
+                "useTrends": "default",
+                "useZabbixValueMapping": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": "0",
+              "refId": "R",
+              "resultFormat": "time_series",
+              "schema": 12,
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "textFilter": "",
+              "trigger": {
+                "filter": ""
+              }
+            },
+            {
+              "application": {
+                "filter": ""
+              },
+              "countTriggersBy": "",
+              "datasource": {
+                "type": "alexanderzobnin-zabbix-datasource",
+                "uid": "${DS_ZABBIX_- PRD}"
+              },
+              "functions": [],
+              "group": {
+                "filter": "GCP"
+              },
+              "hide": false,
+              "host": {
+                "filter": "cerc-airflow-monitor-prd"
+              },
+              "item": {
+                "filter": "[ap005_interop] Last dagRun state number"
+              },
+              "itemTag": {
+                "filter": "airflow: Last dagRun state number"
+              },
+              "macro": {
+                "filter": ""
+              },
+              "options": {
+                "count": false,
+                "disableDataAlignment": false,
+                "showDisabledItems": false,
+                "skipEmptyValues": false,
+                "useTrends": "default",
+                "useZabbixValueMapping": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": "0",
+              "refId": "S",
+              "resultFormat": "time_series",
+              "schema": 12,
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "textFilter": "",
+              "trigger": {
+                "filter": ""
+              }
+            },
+            {
+              "application": {
+                "filter": ""
+              },
+              "countTriggersBy": "",
+              "datasource": {
+                "type": "alexanderzobnin-zabbix-datasource",
+                "uid": "${DS_ZABBIX_- PRD}"
+              },
+              "functions": [],
+              "group": {
+                "filter": "GCP"
+              },
+              "hide": false,
+              "host": {
+                "filter": "cerc-airflow-monitor-prd"
+              },
+              "item": {
+                "filter": "[ap005_optins_without_info] Last dagRun state number"
+              },
+              "itemTag": {
+                "filter": "airflow: Last dagRun state number"
+              },
+              "macro": {
+                "filter": ""
+              },
+              "options": {
+                "count": false,
+                "disableDataAlignment": false,
+                "showDisabledItems": false,
+                "skipEmptyValues": false,
+                "useTrends": "default",
+                "useZabbixValueMapping": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": "0",
+              "refId": "T",
+              "resultFormat": "time_series",
+              "schema": 12,
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "textFilter": "",
+              "trigger": {
+                "filter": ""
+              }
+            },
+            {
+              "application": {
+                "filter": ""
+              },
+              "countTriggersBy": "",
+              "datasource": {
+                "type": "alexanderzobnin-zabbix-datasource",
+                "uid": "${DS_ZABBIX_- PRD}"
+              },
+              "functions": [],
+              "group": {
+                "filter": "GCP"
+              },
+              "hide": false,
+              "host": {
+                "filter": "cerc-airflow-monitor-prd"
+              },
+              "item": {
+                "filter": "[ap005_effects_without_asset] Last dagRun state number"
+              },
+              "itemTag": {
+                "filter": "airflow: Last dagRun state number"
+              },
+              "macro": {
+                "filter": ""
+              },
+              "options": {
+                "count": false,
+                "disableDataAlignment": false,
+                "showDisabledItems": false,
+                "skipEmptyValues": false,
+                "useTrends": "default",
+                "useZabbixValueMapping": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": "0",
+              "refId": "V",
+              "resultFormat": "time_series",
+              "schema": 12,
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "textFilter": "",
+              "trigger": {
+                "filter": ""
+              }
+            },
+            {
+              "application": {
+                "filter": ""
+              },
+              "countTriggersBy": "",
+              "datasource": {
+                "type": "alexanderzobnin-zabbix-datasource",
+                "uid": "${DS_ZABBIX_- PRD}"
+              },
+              "functions": [],
+              "group": {
+                "filter": "GCP"
+              },
+              "hide": false,
+              "host": {
+                "filter": "cerc-airflow-monitor-prd"
+              },
+              "item": {
+                "filter": "[ap005_asset_with_effects] Last dagRun state number"
+              },
+              "itemTag": {
+                "filter": "airflow: Last dagRun state number"
+              },
+              "macro": {
+                "filter": ""
+              },
+              "options": {
+                "count": false,
+                "disableDataAlignment": false,
+                "showDisabledItems": false,
+                "skipEmptyValues": false,
+                "useTrends": "default",
+                "useZabbixValueMapping": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": "0",
+              "refId": "W",
+              "resultFormat": "time_series",
+              "schema": 12,
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "textFilter": "",
+              "trigger": {
+                "filter": ""
+              }
+            },
+            {
+              "application": {
+                "filter": ""
+              },
+              "countTriggersBy": "",
+              "datasource": {
+                "type": "alexanderzobnin-zabbix-datasource",
+                "uid": "${DS_ZABBIX_- PRD}"
+              },
+              "functions": [],
+              "group": {
+                "filter": "GCP"
+              },
+              "hide": false,
+              "host": {
+                "filter": "cerc-airflow-monitor-prd"
+              },
+              "item": {
+                "filter": "[ap005_asset_without_effects] Last dagRun state number"
+              },
+              "itemTag": {
+                "filter": "airflow: Last dagRun state number"
+              },
+              "macro": {
+                "filter": ""
+              },
+              "options": {
+                "count": false,
+                "disableDataAlignment": false,
+                "showDisabledItems": false,
+                "skipEmptyValues": false,
+                "useTrends": "default",
+                "useZabbixValueMapping": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": "0",
+              "refId": "X",
+              "resultFormat": "time_series",
+              "schema": 12,
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "textFilter": "",
+              "trigger": {
+                "filter": ""
+              }
+            }
+          ],
+          "title": "DAG Dependencies | Flowchart",
+          "transparent": true,
+          "type": "jdbranham-diagram-panel"
+        },
+        {
+          "datasource": {
+            "type": "stackdriver",
+            "uid": "${DS_CERC_2.0}"
+          },
+          "gridPos": {
+            "h": 1,
+            "w": 24,
+            "x": 0,
+            "y": 37
+          },
+          "id": 30,
+          "targets": [
+            {
+              "datasource": {
+                "type": "stackdriver",
+                "uid": "${DS_CERC_2.0}"
+              },
+              "queryType": "timeSeriesList",
+              "refId": "A",
+              "timeSeriesList": {
+                "alignmentPeriod": "cloud-monitoring-auto",
+                "crossSeriesReducer": "REDUCE_NONE",
+                "filters": [],
+                "groupBys": [],
+                "perSeriesAligner": "ALIGN_MEAN",
+                "projectName": "cerc-monitoring-prd"
+              }
+            }
+          ],
+          "transparent": true,
+          "type": "mxswat-separator-panel"
+        },
+        {
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "${DS_ZABBIX_- PRD}"
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 24,
+            "x": 0,
+            "y": 38
+          },
+          "id": 22,
+          "options": {
+            "ackEventColor": "rgb(56, 219, 156)",
+            "ackField": true,
+            "ageField": false,
+            "allowDangerousHTML": false,
+            "customLastChangeFormat": false,
+            "descriptionAtNewLine": false,
+            "descriptionField": true,
+            "fontSize": "100%",
+            "highlightBackground": false,
+            "highlightNewEvents": false,
+            "highlightNewerThan": "1h",
+            "hostField": false,
+            "hostGroups": false,
+            "hostProxy": false,
+            "hostTechNameField": false,
+            "lastChangeFormat": "",
+            "layout": "list",
+            "markAckEvents": false,
+            "okEventColor": "rgb(56, 189, 113)",
+            "opdataField": false,
+            "pageSize": 10,
+            "problemTimeline": true,
+            "severityField": true,
+            "showTags": false,
+            "sortProblems": "lastchange",
+            "statusField": true,
+            "statusIcon": false,
+            "triggerSeverity": [
+              {
+                "color": "rgb(108, 108, 108)",
+                "priority": 0,
+                "severity": "Not classified",
+                "show": true
+              },
+              {
+                "color": "rgb(120, 158, 183)",
+                "priority": 1,
+                "severity": "Information",
+                "show": true
+              },
+              {
+                "color": "rgb(175, 180, 36)",
+                "priority": 2,
+                "severity": "Warning",
+                "show": true
+              },
+              {
+                "color": "rgb(255, 137, 30)",
+                "priority": 3,
+                "severity": "Average",
+                "show": true
+              },
+              {
+                "color": "rgb(255, 101, 72)",
+                "priority": 4,
+                "severity": "High",
+                "show": true
+              },
+              {
+                "color": "rgb(215, 0, 0)",
+                "priority": 5,
+                "severity": "Disaster",
+                "show": true
+              }
+            ]
+          },
+          "pluginVersion": "9.4.1",
+          "targets": [
+            {
+              "application": {
+                "filter": ""
+              },
+              "countTriggersBy": "",
+              "datasource": {
+                "type": "alexanderzobnin-zabbix-datasource",
+                "uid": "${DS_ZABBIX_- PRD}"
+              },
+              "functions": [],
+              "group": {
+                "filter": "GCP"
+              },
+              "host": {
+                "filter": "cerc-airflow-monitor-prd"
+              },
+              "item": {
+                "filter": "/$dags/"
+              },
+              "itemTag": {
+                "filter": ""
+              },
+              "macro": {
+                "filter": ""
+              },
+              "options": {
+                "acknowledged": 2,
+                "count": false,
+                "disableDataAlignment": false,
+                "hostProxy": false,
+                "hostsInMaintenance": false,
+                "limit": 1001,
+                "minSeverity": 0,
+                "showDisabledItems": false,
+                "skipEmptyValues": false,
+                "sortProblems": "default",
+                "useTimeRange": false,
+                "useTrends": "default",
+                "useZabbixValueMapping": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": "5",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "schema": 12,
+              "showProblems": "history",
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "textFilter": "",
+              "trigger": {
+                "filter": ""
+              }
+            }
+          ],
+          "title": "Incidents | History",
+          "transparent": true,
+          "type": "alexanderzobnin-zabbix-triggers-panel"
+        }
+      ],
+      "title": "[All] DAGs",
+      "type": "row"
+    }
+  ],
+  "refresh": false,
+  "revision": 1,
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {},
+        "datasource": {
+          "type": "alexanderzobnin-zabbix-datasource",
+          "uid": "${DS_ZABBIX_- PRD}"
+        },
+        "definition": "Zabbix - item",
+        "hide": 0,
+        "includeAll": false,
+        "label": "DAG",
+        "multi": false,
+        "name": "dags",
+        "options": [],
+        "query": {
+          "application": "/.*/",
+          "group": "GCP",
+          "host": "cerc-airflow-monitor-prd",
+          "item": "/dagRuns/",
+          "itemTag": "",
+          "queryType": "item"
+        },
+        "refresh": 1,
+        "regex": "/\\[(.*)\\] \\[(.*)\\] dagRuns/",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "AIRFLOW - All DAGs [Discovery API]",
+  "uid": "Bg2qz8KIz",
+  "version": 25,
+  "weekStart": ""
+}
